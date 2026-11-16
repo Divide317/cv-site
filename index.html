@@ -1188,6 +1188,29 @@
   }
   var knob = document.getElementById("knob");
   var knobSvg = knob.querySelector("svg");
+  // skill groups come from status.js; the HTML above is only the fallback
+  if (STATUS.skills && STATUS.skills.length) {
+    var modeBox = document.getElementById("modes");
+    var readout = document.querySelector(".readout");
+    modeBox.textContent = "";
+    readout.textContent = "";
+    STATUS.skills.forEach(function (g, n) {
+      var btn = h("button", null, g.group);
+      btn.type = "button";
+      btn.setAttribute("role", "radio");
+      btn.setAttribute("aria-checked", n === 0 ? "true" : "false");
+      if (n) btn.tabIndex = -1;
+      btn.dataset.panel = "skill-" + n;
+      modeBox.appendChild(btn);
+      var sec = h("section");
+      sec.id = "skill-" + n;
+      sec.appendChild(h("h3", null, g.group + (g.note ? ", " + g.note : "")));
+      var ul = h("ul");
+      g.items.forEach(function (item) { ul.appendChild(h("li", null, item)); });
+      sec.appendChild(ul);
+      readout.appendChild(sec);
+    });
+  }
   var modes = Array.prototype.slice.call(document.querySelectorAll("#modes button"));
   var selected = 0;
 

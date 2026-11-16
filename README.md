@@ -11,9 +11,12 @@ Résumé and portfolio site for Cedric Antony Joseph.
 
 ## Updating the site
 
-Everything that changes over time lives in `status.js`: each project's stage, progress
-percentage, description and next step, plus the certificates in progress. Change the values,
-set `updated` to today's date, commit and push.
+Everything that changes over time lives in `status.js`: the about text, each project's stage,
+progress percentage, description and next step, the skill groups, and the certificates in
+progress. Change the values, set `updated` to today's date, commit and push.
+
+The same file feeds the dashboard on the GitHub profile (`Divide317/Divide317`), which rebuilds
+itself every three hours. Keep everything after `window.STATUS =` as valid JSON.
 
 The page adds three things live from the public GitHub API on every visit:
 
