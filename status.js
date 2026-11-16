@@ -49,7 +49,7 @@ window.STATUS = {
     {
       "name": "CreaseGuard",
       "tagline": "Cricket no-ball detection and rule adjudication",
-      "repo": "Divide317/No_ball",
+      "repo": "Divide317/CreaseGuard",
       "stage": "In progress",
       "progress": null,
       "stack": "Python, PyTorch, OpenCV, FastAPI, ONNX",
