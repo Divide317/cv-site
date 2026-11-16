@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cedric Antony Joseph | AI, machine learning and cybersecurity</title>
+<meta name="description" content="Portfolio of Cedric Antony Joseph, a computer science undergraduate at VIT Chennai specialising in AI and machine learning and moving into cybersecurity.">
+<meta property="og:title" content="Cedric Antony Joseph">
+<meta property="og:description" content="Computer science undergraduate specialising in AI and machine learning, moving into cybersecurity. Detection systems for rootkits, money laundering and more.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12382B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2312382B'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23F1EEE3'/%3E%3Cpath d='M30 36 L47 14 L34 38 Z' fill='%23D63A2B'/%3E%3Ccircle cx='32' cy='36' r='5' fill='%230B271E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Show the start-lights loader only when scripts run and motion is welcome
+  document.documentElement.className =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "js" : "js loading";
+</script>
+<style>
+  :root {
+    --green: #12382B;
+    --green-deep: #0B271E;
+    --green-lift: #1A4A39;
+    --chalk: #F1EEE3;
+    --yellow: #F4C430;
+    --red: #D63A2B;
+    --alu: #B7C1BB;
+    --line: rgba(241, 238, 227, 0.2);
+    --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    --measure: 62ch;
+    --gutter: clamp(1.25rem, 5vw, 5rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--green);
+    color: var(--chalk);
+    font-family: var(--body);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.175rem);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Livery: twin pinstripes down the left edge of the page */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 auto 0 clamp(0.4rem, 1.6vw, 1.5rem);
+    width: 11px;
+    background: linear-gradient(90deg, var(--yellow) 0 3px, transparent 3px 8px, var(--yellow) 8px 11px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute;
+    left: -999px;
+    top: 0.5rem;
+    background: var(--yellow);
+    color: var(--green-deep);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    z-index: 20;
+  }
+  .skip:focus { left: 3rem; }
+
+  h1, h2, h3 { font-family: var(--display); margin: 0; }
+
+  .wrap {
+    width: min(100%, 78rem);
+    margin-inline: auto;
+    padding-inline: calc(var(--gutter) + 1rem) var(--gutter);
+  }
+
+  /* ---------- Profile (first gear) ---------- */
+  .profile {
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  h1 {
+    font-weight: 700;
+    font-size: clamp(3.4rem, 9.5vw, 7.75rem);
+    line-height: 0.88;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+  h1 span { display: block; }
+  .intro {
+    max-width: 34ch;
+    font-size: clamp(1.15rem, 1rem + 0.8vw, 1.5rem);
+    line-height: 1.45;
+    margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .btn {
+    display: inline-block;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    border: 2px solid var(--chalk);
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .btn-solid { background: var(--yellow); border-color: var(--yellow); color: var(--green-deep); }
+  .btn-solid:hover { background: var(--chalk); border-color: var(--chalk); }
+  .btn-line:hover { background: var(--chalk); color: var(--green-deep); }
+
+  .facts {
+    list-style: none;
+    padding: 0;
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    display: grid;
+    gap: 0.35rem;
+    color: var(--alu);
+    font-size: 1rem;
+  }
+  .facts strong { color: var(--chalk); font-weight: 500; }
+
+  /* Rev counter */
+  .cluster { display: grid; justify-items: center; gap: 1.25rem; }
+  .dial { width: min(100%, 26rem); height: auto; display: block; }
+  .dial text { font-family: var(--display); fill: var(--green-deep); }
+  .dial .num { font-size: 30px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+  .dial .unit { font-size: 13px; font-weight: 600; text-anchor: middle; letter-spacing: 0.12em; }
+  .dial .redzone { transition: stroke 0.12s; }
+  .dial.redline .redzone { stroke: #FF4B38; }
+  .dial .lamp { fill: #3b1612; transition: fill 0.08s; }
+  .dial.redline .lamp { fill: #FF4B38; }
+
+  .pedal {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--chalk);
+    background: var(--green-deep);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 0.85rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: transform 0.08s, border-color 0.15s, background-color 0.15s;
+  }
+  .pedal:hover { border-color: var(--chalk); }
+  .pedal.down { transform: translateY(3px) scale(0.98); background: #071a14; border-color: var(--yellow); }
+
+  /* ---------- Sections ---------- */
+  .lap { padding-block: clamp(4rem, 10vh, 7.5rem); position: relative; }
+  /* lane marking between sections */
+  .lap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(var(--gutter) + 1rem);
+    right: var(--gutter);
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--line) 0 3.5rem, transparent 3.5rem 6rem);
+  }
+  .lap-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  }
+  .gear-badge {
+    flex: none;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--chalk);
+    color: var(--green-deep);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  h2 { font-weight: 600; font-size: clamp(2.3rem, 5.5vw, 4rem); line-height: 1; }
+
+  /* Experience */
+  .log { list-style: none; margin: 0; padding: 0; }
+  .log li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 2rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .log li:last-child { border-bottom: 1px solid var(--line); }
+  .log h3 { font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; }
+  .log .org { color: var(--alu); margin: 0.2rem 0 0; }
+  .log .when { color: var(--yellow); font-weight: 500; white-space: nowrap; padding-top: 0.3rem; }
+  .log .what { grid-column: 1 / -1; max-width: var(--measure); margin: 0.6rem 0 0; }
+
+  /* Projects */
+  .garage { border-bottom: 1px solid var(--line); }
+  .garage details { border-top: 1px solid var(--line); }
+  .garage summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto 1.5rem;
+    align-items: center;
+    gap: 0.25rem 1.25rem;
+    padding-block: 1.4rem;
+  }
+  .garage summary::-webkit-details-marker { display: none; }
+  .p-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.05;
+    transition: color 0.15s;
+  }
+  .garage summary:hover .p-name, .garage details[open] .p-name { color: var(--yellow); }
+  .p-line { color: var(--alu); }
+  .chip {
+    grid-column: 2;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--yellow);
+    border: 1.5px solid var(--yellow);
+    border-radius: 999px;
+    padding: 0.2rem 0.8rem;
+    white-space: nowrap;
+  }
+  .chip.done { color: var(--green-deep); background: var(--yellow); }
+  .toggle {
+    grid-column: 3;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+  }
+  .toggle::before, .toggle::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.1rem;
+    height: 2px;
+    background: var(--chalk);
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s;
+  }
+  .toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+  details[open] .toggle::after { transform: translate(-50%, -50%) rotate(0deg); }
+  .p-body {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.5rem 3rem;
+    padding: 0 0 1.75rem;
+  }
+  .p-body ul { margin: 0; padding-left: 1.2rem; max-width: var(--measure); }
+  .p-body li + li { margin-top: 0.5rem; }
+  .p-body dl { margin: 0; }
+  .p-body dt { color: var(--alu); font-size: 0.95rem; }
+  .p-body dd { margin: 0 0 0.9rem; font-weight: 500; }
+
+  /* Live status: build gauge, last push, activity feed */
+  .stamp { color: var(--alu); margin: -1rem 0 1.5rem; font-size: 0.95rem; }
+  .p-main { display: grid; gap: 0.15rem; min-width: 0; }
+  .p-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; margin-top: 0.45rem; color: var(--alu); font-size: 0.95rem; }
+  .p-meta:empty { display: none; }
+  .fuel {
+    display: inline-block;
+    width: 8.5rem;
+    height: 0.6rem;
+    border-radius: 2px;
+    background: rgba(241, 238, 227, 0.14);
+    position: relative;
+    overflow: hidden;
+  }
+  .fuel i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--yellow);
+    transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  /* tick marks every tenth, like a fuel gauge */
+  .fuel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--green) calc(10% - 2px) 10%);
+  }
+  .fuel-num { color: var(--chalk); font-weight: 500; }
+  .live-dot { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #4ade80; margin-right: 0.4rem; }
+  .pit { margin-top: clamp(2.5rem, 6vw, 4rem); }
+  .sub { font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+  .pit #oss { margin-top: 2rem; }
+  .feed { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+  .feed li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 1.5rem;
+    padding-block: 0.8rem;
+    border-top: 1px solid var(--line);
+  }
+  .feed a { text-decoration-color: var(--line); text-underline-offset: 0.2em; }
+  .feed a:hover { text-decoration-color: var(--yellow); }
+  .feed time { color: var(--alu); white-space: nowrap; }
+  .feed-note { color: var(--alu); margin: 0.75rem 0 0; font-size: 0.95rem; }
+  .log .covers { grid-column: 1 / -1; max-width: var(--measure); margin: 0.5rem 0 0; color: var(--alu); }
+
+  /* Skills: rotary selector */
+  .selector {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .rotary { display: flex; align-items: center; gap: 1.25rem; }
+  .knob {
+    flex: none;
+    width: clamp(7.5rem, 16vw, 11rem);
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .knob svg { width: 100%; height: 100%; display: block; transition: transform 0.35s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .modes { display: grid; gap: 0.35rem; }
+  .modes button {
+    font-family: var(--body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-align: left;
+    color: var(--alu);
+    background: none;
+    border: 0;
+    border-left: 3px solid transparent;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .modes button:hover { color: var(--chalk); }
+  .modes button[aria-checked="true"] { color: var(--chalk); border-left-color: var(--red); }
+  .readout h3 { font-weight: 500; font-size: 1.25rem; color: var(--alu); font-family: var(--body); margin-bottom: 0.5rem; }
+  .readout ul {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 1.5rem;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+    line-height: 1.15;
+  }
+  .js .readout section[hidden] { display: none; }
+  .js .readout ul { margin-bottom: 0; }
+
+  /* Contact */
+  .contact p { max-width: 30ch; font-size: clamp(1.15rem, 1rem + 0.8vw, 1.5rem); line-height: 1.45; margin: 0 0 2rem; }
+  .links { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+  .links li { border-top: 1px solid var(--line); }
+  .links a {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 1.1rem;
+    text-decoration: none;
+  }
+  .links .kind { color: var(--alu); }
+  .links .where {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    transition: color 0.15s;
+  }
+  .links a:hover .where { color: var(--yellow); }
+
+  footer { padding-block: 2.5rem 8rem; color: var(--alu); font-size: 0.95rem; }
+
+  /* ---------- Gear lever navigation ---------- */
+  .shifter {
+    position: fixed;
+    right: clamp(0.75rem, 2vw, 1.75rem);
+    bottom: clamp(0.75rem, 2vw, 1.75rem);
+    width: 9.5rem;
+    z-index: 10;
+  }
+  .plate {
+    position: relative;
+    aspect-ratio: 150 / 170;
+    border-radius: 16px;
+    background: linear-gradient(155deg, #dfe4e0 0%, #9aa59f 55%, #c4ccc7 100%);
+    box-shadow: 0 10px 30px rgba(4, 18, 13, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+  .plate svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .plate a {
+    position: absolute;
+    width: 26.6%;
+    height: 38%;
+    transform: translate(-50%, 0);
+    display: grid;
+    justify-items: center;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--green-deep);
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  .plate a.top { top: 4%; align-items: start; padding-top: 0.3rem; }
+  .plate a.bottom { bottom: 4%; align-items: end; padding-bottom: 0.3rem; }
+  .plate a[aria-current="true"] { color: var(--red); }
+  .gear-name {
+    margin: 0.5rem 0 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.95rem;
+    background: var(--green-deep);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+  }
+  .shifter .label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  /* keep page content clear of the fixed gear lever */
+  @media (min-width: 40.01rem) {
+    .wrap { padding-inline-end: max(var(--gutter), 13.5rem); }
+  }
+
+  /* ---------- Start lights (loading screen) ---------- */
+  .loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--green-deep);
+    display: none;
+    place-content: center;
+    justify-items: center;
+    gap: clamp(1.5rem, 4vh, 2.5rem);
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .loading .loader { display: grid; }
+  .loading, .loading body { overflow: hidden; }
+  .loader.out { transform: translateY(-100%); }
+  .gantry {
+    display: flex;
+    gap: clamp(0.6rem, 2vw, 1rem);
+    padding: clamp(0.8rem, 2vw, 1.25rem);
+    background: #06150f;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+  .gantry span {
+    width: clamp(2.25rem, 8vw, 4rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #33110d;
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.35);
+    transition: background-color 0.06s, box-shadow 0.06s;
+  }
+  .gantry span.on {
+    background: #FF3B2B;
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.15), 0 0 28px rgba(255, 59, 43, 0.75);
+  }
+  .loader p {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 4vw, 2.25rem);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Small screens ---------- */
+  @media (max-width: 56rem) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .cluster { justify-items: start; }
+    .dial { width: min(100%, 19rem); }
+    .selector { grid-template-columns: 1fr; }
+    .p-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 40rem) {
+    /* The gate becomes a gear strip along the bottom edge */
+    .shifter { left: 0; right: 0; bottom: 0; width: auto; background: var(--green-deep); border-top: 1px solid var(--line); padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 0.75rem; }
+    .plate { aspect-ratio: auto; background: none; box-shadow: none; display: flex; gap: 0.25rem; }
+    .plate svg { display: none; }
+    .plate a, .plate a.top, .plate a.bottom {
+      position: static;
+      transform: none;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+      place-items: center;
+      color: var(--chalk);
+      border: 1.5px solid var(--line);
+      border-radius: 50%;
+    }
+    .plate a[aria-current="true"] { background: var(--chalk); color: var(--green-deep); border-color: var(--chalk); }
+    .plate a:nth-of-type(1) { order: 1; } .plate a:nth-of-type(2) { order: 2; }
+    .plate a:nth-of-type(3) { order: 3; } .plate a:nth-of-type(4) { order: 4; }
+    .plate a:nth-of-type(5) { order: 5; } .plate a:nth-of-type(6) { order: 6; }
+    .gear-name { margin: 0 0 0 auto; background: none; padding: 0 0.5rem 0 0; text-align: right; }
+    .log li { grid-template-columns: 1fr; }
+    .log .when { padding-top: 0; }
+    .garage summary { grid-template-columns: minmax(0, 1fr) 1.5rem; }
+    .chip { grid-row: 2; grid-column: 1; justify-self: start; margin-top: 0.2rem; }
+    .feed li { grid-template-columns: 1fr; }
+    .toggle { grid-column: 2; grid-row: 1; }
+    .links a { grid-template-columns: 1fr; gap: 0.1rem; }
+    body::before { width: 7px; background: linear-gradient(90deg, var(--yellow) 0 2px, transparent 2px 5px, var(--yellow) 5px 7px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+  }
+</style>
+<script src="status.js"></script>
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="gantry"><span></span><span></span><span></span><span></span><span></span></div>
+  <p>Cedric Antony Joseph</p>
+</div>
+<a class="skip" href="#experience">Skip to experience</a>
+
+<main id="top">
+
+  <!-- 1: Profile -->
+  <section class="profile" id="profile" data-gear="1" data-name="Profile">
+    <div class="wrap profile-grid">
+      <div>
+        <h1><span>Cedric</span><span>Antony</span><span>Joseph</span></h1>
+        <p class="intro">I build detection engines at three layers of the stack: kernel, device and ledger. Computer science undergraduate at VIT Chennai, moving from AI and machine learning into cybersecurity and systems.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="Cedric_Antony_Joseph_Resume.pdf" download>Download résumé (PDF)</a>
+          <a class="btn btn-line" href="mailto:cedricaj31@gmail.com">Email me</a>
+        </div>
+        <ul class="facts">
+          <li><strong>B.Tech Computer Science and Engineering (AI and ML)</strong>, graduating June 2028</li>
+          <li><strong>Research and Development Lead</strong>, Business Innovators Community</li>
+          <li><strong>State-level finalist</strong>, Bit N Build 2025</li>
+          <li><strong>Google Cybersecurity Professional Certificate</strong>, in progress</li>
+        </ul>
+      </div>
+
+      <div class="cluster">
+        <svg class="dial" id="dial" viewBox="0 0 320 320" role="img" aria-label="Rev counter. Hold the button below to rev it.">
+          <defs>
+            <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#eef1ee"/>
+              <stop offset="0.5" stop-color="#8f9b95"/>
+              <stop offset="1" stop-color="#d5dbd7"/>
+            </linearGradient>
+            <radialGradient id="face" cx="0.5" cy="0.4" r="0.7">
+              <stop offset="0" stop-color="#fbf9f1"/>
+              <stop offset="1" stop-color="#e4e0d2"/>
+            </radialGradient>
+          </defs>
+          <circle cx="160" cy="160" r="156" fill="url(#bezel)"/>
+          <circle cx="160" cy="160" r="143" fill="#0B271E"/>
+          <circle cx="160" cy="160" r="139" fill="url(#face)"/>
+          <g id="ticks"></g>
+          <path class="redzone" id="redzone" fill="none" stroke="#D63A2B" stroke-width="9"/>
+          <text class="unit" x="160" y="226">RPM x1000</text>
+          <circle class="lamp" cx="160" cy="250" r="6"/>
+          <g id="needle" transform="rotate(-135 160 160)">
+            <path d="M156.5 188 L159.2 46 L160.8 46 L163.5 188 Z" fill="#D63A2B"/>
+          </g>
+          <circle cx="160" cy="160" r="17" fill="#0B271E"/>
+          <circle cx="160" cy="160" r="5" fill="#8f9b95"/>
+        </svg>
+        <button class="pedal" id="pedal" type="button">Hold to rev</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2: Experience -->
+  <section class="lap" id="experience" data-gear="2" data-name="Experience">
+    <div class="wrap">
+      <div class="lap-head"><span class="gear-badge" aria-hidden="true">2</span><h2>Experience</h2></div>
+      <ol class="log">
+        <li>
+          <div>
+            <h3>Research and Development Lead</h3>
+            <p class="org">Business Innovators Community, VIT Chennai</p>
+          </div>
+          <span class="when">July 2026 to present</span>
+          <p class="what">Lead an 8-member research and development team, edit and review articles for the community's Medium account, and supported sponsorship outreach and the organisation of DeFy, its two-day Web3 hackathon.</p>
+        </li>
+        <li>
+          <div>
+            <h3>AI Intern</h3>
+            <p class="org">Superposition Technologies</p>
+          </div>
+          <span class="when">One-month internship</span>
+          <p class="what">Worked on an AI-driven platform that routes inbound calls to the right recipient and schedules recurring weekly meetings without manual coordination.</p>
+        </li>
+        <li>
+          <div>
+            <h3>State-level finalist</h3>
+            <p class="org">Bit N Build 2025, a Google Developer Groups hackathon</p>
+          </div>
+          <span class="when">2025</span>
+          <p class="what">Reached the state-level final with GradPilot, an AI-powered admissions planner for Indian students applying to universities abroad.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3: Projects -->
+  <section class="lap" id="projects" data-gear="3" data-name="Projects">
+    <div class="wrap">
+      <div class="lap-head"><span class="gear-badge" aria-hidden="true">3</span><h2>Projects</h2></div>
+      <p class="stamp" id="stamp"></p>
+      <div class="garage" id="garage"></div>
+      <noscript><p>This section needs JavaScript. My projects are on <a href="https://github.com/Divide317">GitHub</a>, and the <a href="Cedric_Antony_Joseph_Resume.pdf">résumé PDF</a> lists them too.</p></noscript>
+
+      <div class="pit" id="pit" hidden>
+        <h3 class="sub">Latest on GitHub</h3>
+        <ul class="feed" id="feed"></ul>
+        <div id="oss" hidden>
+          <h3 class="sub">Open-source contributions</h3>
+          <ul class="feed" id="ossList"></ul>
+        </div>
+        <p class="feed-note" id="feedNote" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4: Skills -->
+  <section class="lap" id="skills" data-gear="4" data-name="Skills">
+    <div class="wrap">
+      <div class="lap-head"><span class="gear-badge" aria-hidden="true">4</span><h2>Skills</h2></div>
+      <div class="selector">
+        <div class="rotary">
+          <button class="knob" id="knob" type="button" aria-label="Turn to the next skill group">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="96" fill="url(#bezel)"/>
+              <g id="grip"></g>
+              <circle cx="100" cy="100" r="72" fill="#0B271E"/>
+              <circle cx="100" cy="100" r="66" fill="#12382B"/>
+              <rect x="118" y="96" width="46" height="8" rx="4" fill="#D63A2B"/>
+            </svg>
+          </button>
+          <div class="modes" role="radiogroup" aria-label="Skill group" id="modes">
+            <button type="button" role="radio" aria-checked="true" data-panel="s-lang">Languages</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-panel="s-sec">Systems and security</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-panel="s-ops">Security operations</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-panel="s-test">Testing and tooling</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-panel="s-ml">Machine learning and backend</button>
+          </div>
+        </div>
+        <div class="readout" aria-live="polite">
+          <section id="s-lang">
+            <h3>Languages</h3>
+            <ul><li>C</li><li>C++</li><li>Python</li><li>Java</li><li>SQL</li><li>JavaScript</li></ul>
+          </section>
+          <section id="s-sec">
+            <h3>Systems and security</h3>
+            <ul><li>Linux internals</li><li>Rootkit detection</li><li>MITRE ATT&amp;CK</li><li>Threat modelling</li><li>Kali Linux</li></ul>
+          </section>
+          <section id="s-ops">
+            <h3>Security operations, learning now through the Google certificate</h3>
+            <ul><li>SIEM tools</li><li>Intrusion detection</li><li>Packet analysis</li><li>Incident response</li></ul>
+          </section>
+          <section id="s-test">
+            <h3>Testing and tooling</h3>
+            <ul><li>Git</li><li>GitHub Actions</li><li>AddressSanitizer</li><li>UBSan</li><li>Valgrind</li><li>clang-tidy</li><li>pytest</li><li>Docker</li></ul>
+          </section>
+          <section id="s-ml">
+            <h3>Machine learning and backend</h3>
+            <ul><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>OpenCV</li><li>ONNX</li><li>FastAPI</li><li>PostgreSQL</li><li>MongoDB</li><li>AWS</li></ul>
+          </section>
+        </div>
+      </div>
+
+      <div class="pit" id="learnBlock" hidden>
+        <h3 class="sub">Currently learning</h3>
+        <ol class="log" id="learning"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5: Contact -->
+  <section class="lap contact" id="contact" data-gear="5" data-name="Contact">
+    <div class="wrap">
+      <div class="lap-head"><span class="gear-badge" aria-hidden="true">5</span><h2>Contact</h2></div>
+      <p>Email is the fastest way to reach me. My résumé is one page and ready to download.</p>
+      <ul class="links">
+        <li><a href="mailto:cedricaj31@gmail.com"><span class="kind">Email</span><span class="where">cedricaj31@gmail.com</span></a></li>
+        <li><a href="https://www.linkedin.com/in/cedric-antony-joseph-5b68b4224/"><span class="kind">LinkedIn</span><span class="where">cedric-antony-joseph</span></a></li>
+        <li><a href="https://github.com/Divide317"><span class="kind">GitHub</span><span class="where">Divide317</span></a></li>
+        <li><a href="Cedric_Antony_Joseph_Resume.pdf" download><span class="kind">Résumé</span><span class="where">Download the PDF</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Cedric Antony Joseph</div>
+</footer>
+
+<!-- Gear lever: the page's navigation -->
+<nav class="shifter" aria-label="Sections">
+  <div class="plate" id="plate">
+    <svg viewBox="0 0 150 170" aria-hidden="true">
+      <g fill="none" stroke="#0B271E" stroke-width="11" stroke-linecap="round">
+        <path d="M35 52 V118 M75 52 V118 M115 52 V118 M35 85 H115"/>
+      </g>
+      <g id="lever" transform="translate(35 52)">
+        <circle r="15" fill="#0B271E"/>
+        <circle r="11" fill="#F1EEE3"/>
+        <circle r="4" fill="#D63A2B"/>
+      </g>
+    </svg>
+    <a class="top" style="left:23.3%" href="#profile" data-gear="1">1<span class="label"> Profile</span></a>
+    <a class="bottom" style="left:23.3%" href="#experience" data-gear="2">2<span class="label"> Experience</span></a>
+    <a class="top" style="left:50%" href="#projects" data-gear="3">3<span class="label"> Projects</span></a>
+    <a class="bottom" style="left:50%" href="#skills" data-gear="4">4<span class="label"> Skills</span></a>
+    <a class="top" style="left:76.7%" href="#contact" data-gear="5">5<span class="label"> Contact</span></a>
+    <a class="bottom" style="left:76.7%" href="#top" data-gear="R">R<span class="label"> Back to the top</span></a>
+  </div>
+  <p class="gear-name" id="gearName" aria-hidden="true">Profile</p>
+</nav>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var SVG = "http://www.w3.org/2000/svg";
+  function el(name, attrs) {
+    var n = document.createElementNS(SVG, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
+  /* ---------- Rev counter ---------- */
+  var CX = 160, CY = 160, MAX = 8, IDLE = 0.9, REDLINE = 6.5;
+  function angle(v) { return -135 + (v / MAX) * 270; }
+  function point(v, r) {
+    var a = angle(v) * Math.PI / 180;
+    return [CX + r * Math.sin(a), CY - r * Math.cos(a)];
+  }
+  var ticks = document.getElementById("ticks");
+  for (var i = 0; i <= MAX * 2; i++) {
+    var v = i / 2, major = i % 2 === 0;
+    var p1 = point(v, 133), p2 = point(v, major ? 113 : 122);
+    ticks.appendChild(el("line", {
+      x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1],
+      stroke: v >= REDLINE ? "#D63A2B" : "#0B271E",
+      "stroke-width": major ? 4 : 2
+    }));
+    if (major) {
+      var pn = point(v, 93);
+      var t = el("text", { x: pn[0], y: pn[1], "class": "num" });
+      t.textContent = v;
+      ticks.appendChild(t);
+    }
+  }
+  var a0 = point(REDLINE, 133.5), a1 = point(MAX, 133.5);
+  document.getElementById("redzone").setAttribute("d",
+    "M" + a0[0] + " " + a0[1] + " A133.5 133.5 0 0 1 " + a1[0] + " " + a1[1]);
+
+  var dial = document.getElementById("dial");
+  var needle = document.getElementById("needle");
+  var pedal = document.getElementById("pedal");
+  var rpm = 0, target = 0, held = false, sweeping = false, running = false, dialVisible = true;
+
+  function draw() {
+    needle.setAttribute("transform", "rotate(" + angle(rpm).toFixed(2) + " 160 160)");
+    dial.classList.toggle("redline", rpm > REDLINE);
+  }
+  function frame() {
+    if (held || sweeping) target = Math.min(MAX, target + 0.2);
+    else target += (IDLE - target) * 0.07;
+    rpm += (target - rpm) * 0.2;
+    // rev limiter: the needle bounces off the top of the scale
+    if (held && rpm > 7.7) rpm -= Math.random() * 0.45;
+    draw();
+    if (!held && !sweeping && Math.abs(rpm - IDLE) < 0.004 && Math.abs(target - IDLE) < 0.004) {
+      running = false;
+      return;
+    }
+    requestAnimationFrame(frame);
+  }
+  function run() { if (!running) { running = true; requestAnimationFrame(frame); } }
+
+  function press(e) {
+    if (e && e.type === "keydown") {
+      if (e.key !== " " && e.key !== "Enter") return;
+      e.preventDefault();
+      if (e.repeat) return;
+    }
+    held = true;
+    pedal.classList.add("down");
+    run();
+  }
+  function release() { held = false; pedal.classList.remove("down"); }
+  pedal.addEventListener("pointerdown", function (e) { pedal.setPointerCapture(e.pointerId); press(); });
+  pedal.addEventListener("pointerup", release);
+  pedal.addEventListener("pointercancel", release);
+  pedal.addEventListener("keydown", press);
+  pedal.addEventListener("keyup", release);
+  pedal.addEventListener("blur", release);
+  pedal.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+  // ignition check: one sweep to the top of the scale, then settle at idle
+  function ignite() {
+    sweeping = true;
+    run();
+    setTimeout(function () { sweeping = false; }, 750);
+  }
+
+  /* ---------- Start lights: five reds come on one by one, then lights out ---------- */
+  var root = document.documentElement;
+  var loader = document.getElementById("loader");
+  if (reduced) {
+    rpm = target = IDLE;
+    draw();
+  } else if (loader && root.classList.contains("loading")) {
+    var lamps = loader.querySelectorAll(".gantry span");
+    var lit = 0, finished = false, lightTimer = null;
+    var lightsOut = function () {
+      if (finished) return;
+      finished = true;
+      clearInterval(lightTimer);
+      for (var n = 0; n < lamps.length; n++) lamps[n].classList.remove("on");
+      loader.classList.add("out");
+      ignite();
+      setTimeout(function () {
+        root.classList.remove("loading");
+        if (loader.parentNode) loader.parentNode.removeChild(loader);
+      }, 650);
+    };
+    lightTimer = setInterval(function () {
+      if (lit < lamps.length) { lamps[lit++].classList.add("on"); return; }
+      clearInterval(lightTimer);
+      setTimeout(lightsOut, 380);
+    }, 240);
+    // a click or key press skips the wait
+    loader.addEventListener("click", lightsOut);
+    window.addEventListener("keydown", lightsOut, { once: true });
+  } else {
+    ignite();
+  }
+
+  // scrolling blips the throttle while the dial is on screen
+  var lastY = window.scrollY;
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, dy = Math.abs(y - lastY);
+    lastY = y;
+    if (reduced || !dialVisible) return;
+    target = Math.min(7, Math.max(target, IDLE + dy * 0.06));
+    run();
+  }, { passive: true });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      dialVisible = entries[0].isIntersecting;
+    }).observe(dial);
+  }
+
+  /* ---------- Gear lever navigation ---------- */
+  var GATE = { "1": [35, 52], "2": [35, 118], "3": [75, 52], "4": [75, 118], "5": [115, 52], "R": [115, 118] };
+  var NEUTRAL_Y = 85;
+  var lever = document.getElementById("lever");
+  var gearName = document.getElementById("gearName");
+  var links = Array.prototype.slice.call(document.querySelectorAll("#plate a"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll("[data-name]"));
+  var names = { R: "Back to the top" };
+  sections.forEach(function (s) { names[s.dataset.gear] = s.dataset.name; });
+  var gear = "1", pos = GATE["1"].slice(), shiftId = 0, locked = false, lockTimer = null;
+
+  function place(x, y) {
+    pos = [x, y];
+    lever.setAttribute("transform", "translate(" + x.toFixed(1) + " " + y.toFixed(1) + ")");
+  }
+  function shift(to) {
+    if (to === gear) return;
+    gear = to;
+    links.forEach(function (a) {
+      if (a.dataset.gear === to) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+    gearName.textContent = names[to];
+    var end = GATE[to];
+    if (reduced) { place(end[0], end[1]); return; }
+    // travel through the gate: out to neutral, across, into the slot
+    var pts = [pos.slice(), [pos[0], NEUTRAL_Y], [end[0], NEUTRAL_Y], end];
+    var lens = [], total = 0;
+    for (var i = 1; i < pts.length; i++) {
+      var d = Math.abs(pts[i][0] - pts[i - 1][0]) + Math.abs(pts[i][1] - pts[i - 1][1]);
+      lens.push(d);
+      total += d;
+    }
+    var id = ++shiftId, start = performance.now(), dur = 160 + total * 2.2;
+    (function step(now) {
+      if (id !== shiftId) return;
+      var t = Math.min(1, (now - start) / dur);
+      var e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      var dist = e * total, k = 0;
+      while (k < lens.length - 1 && dist > lens[k]) { dist -= lens[k]; k++; }
+      var f = lens[k] ? dist / lens[k] : 1;
+      place(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * f, pts[k][1] + (pts[k + 1][1] - pts[k][1]) * f);
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+  links[0].setAttribute("aria-current", "true");
+
+  function unlock() {
+    locked = false;
+    clearTimeout(lockTimer);
+    syncGear();
+  }
+  links.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href").slice(1);
+      var dest = document.getElementById(id);
+      if (!dest) return;
+      e.preventDefault();
+      locked = true;
+      shift(a.dataset.gear);
+      dest.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      history.replaceState(null, "", id === "top" ? location.pathname : "#" + id);
+      clearTimeout(lockTimer);
+      lockTimer = setTimeout(unlock, 1100);
+    });
+  });
+  window.addEventListener("scrollend", function () { if (locked) unlock(); });
+
+  // the section crossing the middle of the screen sets the gear
+  function syncGear() {
+    if (locked) return;
+    var mid = window.innerHeight * 0.45, current = sections[0];
+    sections.forEach(function (s) {
+      if (s.getBoundingClientRect().top <= mid) current = s;
+    });
+    shift(current.dataset.gear);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; syncGear(); });
+  }, { passive: true });
+  window.addEventListener("resize", syncGear);
+  syncGear();
+
+  /* ---------- Live status: projects, learning and GitHub activity ---------- */
+  var STATUS = window.STATUS || { projects: [], learning: [] };
+  function h(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function ago(iso) {
+    var secs = (Date.now() - new Date(iso).getTime()) / 1000;
+    var units = [["year", 31536000], ["month", 2592000], ["week", 604800], ["day", 86400], ["hour", 3600], ["minute", 60]];
+    for (var u = 0; u < units.length; u++) {
+      if (secs >= units[u][1]) {
+        var n = Math.floor(secs / units[u][1]);
+        return n + " " + units[u][0] + (n === 1 ? "" : "s") + " ago";
+      }
+    }
+    return "just now";
+  }
+  function longDate(iso) {
+    return new Date(iso + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  var garage = document.getElementById("garage");
+  var pushSlots = {};
+  STATUS.projects.forEach(function (p, index) {
+    var d = h("details");
+    if (index === 0) d.open = true;
+    var sum = h("summary");
+    var main = h("span", "p-main");
+    main.appendChild(h("span", "p-name", p.name));
+    main.appendChild(h("span", "p-line", p.tagline));
+    var meta = h("span", "p-meta");
+    if (typeof p.progress === "number") {
+      var fuel = h("span", "fuel");
+      fuel.setAttribute("role", "img");
+      fuel.setAttribute("aria-label", "Build progress " + p.progress + " percent");
+      var fill = h("i");
+      fill.style.width = reduced ? p.progress + "%" : "0%";
+      fill.dataset.to = p.progress;
+      fuel.appendChild(fill);
+      meta.appendChild(fuel);
+      meta.appendChild(h("span", "fuel-num", p.progress + "% built"));
+    }
+    if (p.repo) {
+      var slot = h("span", "push");
+      pushSlots[p.repo.toLowerCase()] = slot;
+      meta.appendChild(slot);
+    }
+    main.appendChild(meta);
+    sum.appendChild(main);
+    sum.appendChild(h("span", "chip" + (p.finished ? " done" : ""), p.stage));
+    var tog = h("span", "toggle");
+    tog.setAttribute("aria-hidden", "true");
+    sum.appendChild(tog);
+    d.appendChild(sum);
+
+    var body = h("div", "p-body");
+    var ul = h("ul");
+    (p.points || []).forEach(function (t) { ul.appendChild(h("li", null, t)); });
+    if (p.next) ul.appendChild(h("li", null, "Next: " + p.next));
+    body.appendChild(ul);
+    var dl = h("dl");
+    dl.appendChild(h("dt", null, "Built with"));
+    dl.appendChild(h("dd", null, p.stack));
+    dl.appendChild(h("dt", null, "Field"));
+    dl.appendChild(h("dd", null, p.field));
+    if (p.repo) {
+      dl.appendChild(h("dt", null, "Repository"));
+      var dd = h("dd");
+      var link = h("a", null, p.repo);
+      link.href = "https://github.com/" + p.repo;
+      dd.appendChild(link);
+      dl.appendChild(dd);
+    }
+    body.appendChild(dl);
+    d.appendChild(body);
+    garage.appendChild(d);
+  });
+  if (STATUS.updated) {
+    document.getElementById("stamp").textContent = "Status last updated " + longDate(STATUS.updated) + ". Activity comes live from GitHub.";
+  }
+  // gauges fill when the project list scrolls into view
+  if (!reduced && "IntersectionObserver" in window) {
+    var gaugeWatch = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      gaugeWatch.disconnect();
+      Array.prototype.forEach.call(garage.querySelectorAll(".fuel i"), function (f) { f.style.width = f.dataset.to + "%"; });
+    }, { threshold: 0.15 });
+    gaugeWatch.observe(garage);
+  } else {
+    Array.prototype.forEach.call(garage.querySelectorAll(".fuel i"), function (f) { f.style.width = f.dataset.to + "%"; });
+  }
+
+  var learning = document.getElementById("learning");
+  (STATUS.learning || []).forEach(function (c) {
+    var li = h("li");
+    var left = h("div");
+    left.appendChild(h("h3", null, c.name));
+    left.appendChild(h("p", "org", c.provider));
+    li.appendChild(left);
+    var state = c.state;
+    if (typeof c.done === "number" && typeof c.total === "number") state += ", " + c.done + " of " + c.total + " courses";
+    li.appendChild(h("span", "when", state));
+    if (c.covers) li.appendChild(h("p", "covers", "Covers " + c.covers + "."));
+    learning.appendChild(li);
+  });
+  if ((STATUS.learning || []).length) document.getElementById("learnBlock").hidden = false;
+
+  // GitHub's public API, cached for 15 minutes per browser tab
+  function gh(path) {
+    var key = "gh:" + path;
+    try {
+      var hit = JSON.parse(sessionStorage.getItem(key) || "null");
+      if (hit && Date.now() - hit.t < 9e5) return Promise.resolve(hit.d);
+    } catch (e) {}
+    return fetch("https://api.github.com" + path, { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (r) { if (!r.ok) throw new Error("GitHub " + r.status); return r.json(); })
+      .then(function (d) {
+        try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), d: d })); } catch (e) {}
+        return d;
+      });
+  }
+  var user = STATUS.github;
+  if (user && window.fetch) {
+    var pit = document.getElementById("pit");
+    var feed = document.getElementById("feed");
+    var note = document.getElementById("feedNote");
+    var shown = {};
+    STATUS.projects.forEach(function (p) { if (p.repo) shown[p.repo.toLowerCase()] = true; });
+
+    gh("/users/" + user + "/repos?per_page=100&sort=pushed").then(function (repos) {
+      repos.forEach(function (r) {
+        var slot = pushSlots[r.full_name.toLowerCase()];
+        if (!slot || !r.pushed_at) return;
+        slot.appendChild(h("span", "live-dot"));
+        slot.appendChild(document.createTextNode("Last push " + ago(r.pushed_at)));
+      });
+    }).catch(function () {});
+
+    gh("/users/" + user + "/events/public?per_page=60").then(function (events) {
+      var verbs = { PushEvent: "Pushed to", PullRequestEvent: "Pull request on", IssuesEvent: "Issue on", ReleaseEvent: "Released", CreateEvent: "Created" };
+      var seen = {}, count = 0;
+      events.forEach(function (ev) {
+        if (count >= 6 || !verbs[ev.type] || !ev.repo) return;
+        var name = ev.repo.name, mine = name.toLowerCase().indexOf(user.toLowerCase() + "/") === 0;
+        // own repositories appear only if they are projects on this page; other people's always do
+        if (mine && !shown[name.toLowerCase()]) return;
+        var day = ev.created_at.slice(0, 10), k = ev.type + name + day;
+        if (seen[k]) return;
+        seen[k] = true;
+        var li = h("li"), line = h("span");
+        line.appendChild(document.createTextNode(verbs[ev.type] + " "));
+        var a = h("a", null, mine ? name.split("/")[1] : name);
+        a.href = "https://github.com/" + name;
+        line.appendChild(a);
+        li.appendChild(line);
+        var t = h("time", null, ago(ev.created_at));
+        t.dateTime = ev.created_at;
+        li.appendChild(t);
+        feed.appendChild(li);
+        count++;
+      });
+      if (!count) {
+        note.textContent = "No public activity on these projects in the last few weeks.";
+        note.hidden = false;
+      }
+      pit.hidden = false;
+    }).catch(function () {
+      note.textContent = "Live GitHub activity could not be loaded just now.";
+      var a = h("a", null, " See the profile on GitHub.");
+      a.href = "https://github.com/" + user;
+      note.appendChild(a);
+      note.hidden = false;
+      pit.hidden = false;
+    });
+
+    // merged pull requests to other people's repositories; the block appears once there is one
+    gh("/search/issues?q=" + encodeURIComponent("type:pr is:merged author:" + user + " -user:" + user) + "&per_page=6&sort=updated")
+      .then(function (res) {
+        if (!res.items || !res.items.length) return;
+        var list = document.getElementById("ossList");
+        res.items.forEach(function (it) {
+          var li = h("li"), line = h("span");
+          var a = h("a", null, it.title);
+          a.href = it.html_url;
+          line.appendChild(a);
+          line.appendChild(document.createTextNode(" in " + it.repository_url.split("/repos/")[1]));
+          li.appendChild(line);
+          var t = h("time", null, "Merged " + ago(it.closed_at));
+          t.dateTime = it.closed_at;
+          li.appendChild(t);
+          list.appendChild(li);
+        });
+        document.getElementById("oss").hidden = false;
+        pit.hidden = false;
+      }).catch(function () {});
+  }
+
+  /* ---------- Skills rotary selector ---------- */
+  var grip = document.getElementById("grip");
+  for (var g = 0; g < 36; g++) {
+    grip.appendChild(el("rect", {
+      x: 98.5, y: 6, width: 3, height: 14, rx: 1.5, fill: "#0B271E", opacity: 0.55,
+      transform: "rotate(" + g * 10 + " 100 100)"
+    }));
+  }
+  var knob = document.getElementById("knob");
+  var knobSvg = knob.querySelector("svg");
+  var modes = Array.prototype.slice.call(document.querySelectorAll("#modes button"));
+  var selected = 0;
+
+  function aim() {
+    var k = knob.getBoundingClientRect(), b = modes[selected].getBoundingClientRect();
+    var dx = b.left - (k.left + k.width / 2), dy = (b.top + b.height / 2) - (k.top + k.height / 2);
+    knobSvg.style.transform = "rotate(" + (Math.atan2(dy, dx) * 180 / Math.PI).toFixed(1) + "deg)";
+  }
+  function select(i, focus) {
+    selected = (i + modes.length) % modes.length;
+    modes.forEach(function (b, n) {
+      var on = n === selected;
+      b.setAttribute("aria-checked", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+      document.getElementById(b.dataset.panel).hidden = !on;
+    });
+    if (focus) modes[selected].focus();
+    aim();
+  }
+  modes.forEach(function (b, n) {
+    b.addEventListener("click", function () { select(n); });
+    b.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); select(selected + 1, true); }
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); select(selected - 1, true); }
+    });
+  });
+  knob.addEventListener("click", function () { select(selected + 1); });
+  window.addEventListener("resize", aim);
+  select(0);
+})();
+</script>
+</body>
+</html>

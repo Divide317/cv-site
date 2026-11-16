@@ -1,0 +1,121 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage[a4paper,top=1.2cm,bottom=1.2cm,left=1.45cm,right=1.45cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+% Machine-readable text for applicant tracking systems
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\hypersetup{
+  pdftitle={Cedric Antony Joseph - Resume},
+  pdfauthor={Cedric Antony Joseph},
+  pdfsubject={Resume},
+  pdfkeywords={Computer Science, Cybersecurity, Linux, Artificial Intelligence, Machine Learning, Python}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\raggedbottom
+\raggedright
+
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0pt}{}[\vspace{-5pt}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+
+\setlist[itemize]{leftmargin=1.3em,itemsep=1.5pt,topsep=2pt,parsep=0pt,partopsep=0pt,label=\textbullet}
+
+% Organisation line: bold left, date right
+\newcommand{\entry}[2]{\textbf{#1}\hfill\textbf{#2}\par}
+% Role line: italic left, italic right
+\newcommand{\role}[2]{\textit{#1}\hfill\textit{#2}\par}
+% Project line: bold name, stack, status right
+\newcommand{\project}[3]{\textbf{#1}~\textbar~\textit{#2}\hfill\textbf{#3}\par}
+
+% The public copy carries no phone number. For copies you send directly, build with:
+%   pdflatex "\def\phoneline{+00 00000 00000 \textbar{} }\input{resume.tex}"
+\providecommand{\phoneline}{}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Cedric Antony Joseph}\\[5pt]
+  Chennai, India \textbar{} \phoneline
+  \href{mailto:cedricaj31@gmail.com}{cedricaj31@gmail.com}\\[2pt]
+  \href{https://www.linkedin.com/in/cedric-antony-joseph-5b68b4224/}{linkedin.com/in/cedric-antony-joseph-5b68b4224} \textbar{}
+  \href{https://github.com/Divide317}{github.com/Divide317}
+\end{center}
+\vspace{-6pt}
+
+\section{Summary}
+Computer science undergraduate moving from AI and machine learning into cybersecurity and systems. Building detection engines at three layers of the stack: kernel (Linux rootkit detector), device (signed sensor telemetry) and ledger (money-laundering engine).
+
+\section{Education}
+\entry{Vellore Institute of Technology (VIT), Chennai}{Expected June 2028}
+\role{B.Tech in Computer Science and Engineering (Specialisation in Artificial Intelligence and Machine Learning)}{Chennai, India}
+\begin{itemize}
+  \item \textbf{Relevant Coursework:} Operating Systems, Computer Networks, Data Structures and Algorithms, Database Management Systems, Machine Learning, Probability and Statistics
+  \item \textbf{Certification in progress:} Google Cybersecurity Professional Certificate (Coursera)
+\end{itemize}
+
+\section{Technical Skills}
+\textbf{Languages:} C, C++, Python, Java, SQL, JavaScript\par
+\vspace{1.5pt}
+\textbf{Systems and Security:} Linux internals (/proc, syscalls), rootkit detection, MITRE ATT\&CK, threat modelling, Kali Linux\par
+\vspace{1.5pt}
+\textbf{Security Operations (certificate in progress):} SIEM tools, intrusion detection systems, packet analysis, incident response\par
+\vspace{1.5pt}
+\textbf{Testing and Tooling:} Git, GitHub Actions, AddressSanitizer, UBSan, Valgrind, clang-tidy, pytest, Docker\par
+\vspace{1.5pt}
+\textbf{Machine Learning and Backend:} PyTorch, TensorFlow, scikit-learn, OpenCV, ONNX, FastAPI, PostgreSQL, MongoDB, AWS\par
+
+\section{Experience}
+\entry{Superposition Technologies}{One-month internship}
+\role{AI Intern}{}
+\begin{itemize}
+  \item Contributed to an AI-driven platform that routes inbound calls to the right recipient and schedules recurring weekly meetings without manual coordination
+\end{itemize}
+
+\section{Projects}
+\project{Crossview}{C, Python, GitHub Actions}{In progress}
+\begin{itemize}
+  \item Building a Linux rootkit detector: a C library asks the kernel about processes, modules, ports and preload hooks through independent interfaces (libc, raw syscalls, direct probes) and flags where the answers disagree
+  \item Localises each mismatch to user-space or kernel-level hiding and maps it to a MITRE ATT\&CK technique; Python command-line tool over a ctypes interface with JSON reports
+  \item CI runs the tests under AddressSanitizer, UBSan and Valgrind with clang-tidy and pytest; published threat model and limitations
+\end{itemize}
+\vspace{2pt}
+\project{CreaseGuard}{Python, PyTorch, OpenCV, FastAPI, ONNX}{In progress}
+\begin{itemize}
+  \item Built a cricket no-ball detection system: two residual CNNs with squeeze-and-excitation attention classify front-foot oversteps and waist-high full tosses from side-on camera frames, with Grad-CAM heatmaps to make each decision checkable
+  \item Added a rule engine for the remaining no-ball laws across five match formats and a FastAPI service that evaluates new frames automatically; live broadcast detection is the next stage
+\end{itemize}
+\vspace{2pt}
+\project{AML Pattern Engine}{C++20, pybind11, Python}{Design stage}
+\begin{itemize}
+  \item Designing a temporal graph engine to detect money-laundering patterns (cycles, fan-in, fan-out, scatter-gather) in IBM's synthetic dataset of 5.08 million transactions; design document, C++ API and test fixtures complete
+\end{itemize}
+\vspace{2pt}
+\project{Trustworthy Sensor Node}{Bare-metal C, FastAPI}{Design stage}
+\begin{itemize}
+  \item Designed a packet format for HMAC-SHA256-signed, replay-protected sensor readings from a microcontroller to a gateway that detects forgery, replay and tampering
+\end{itemize}
+\vspace{2pt}
+\project{GradPilot}{Team hackathon project}{State-level finalist, 2025}
+\begin{itemize}
+  \item Co-developed an AI admissions planner that builds a weekly-adapting roadmap from past admits to a student's target universities; state-level finalist at Bit N Build 2025 (Google Developer Groups)
+\end{itemize}
+
+\section{Leadership}
+\entry{Business Innovators Community, VIT Chennai}{July 2026 -- Present}
+\role{Research and Development Lead}{Chennai, India}
+\begin{itemize}
+  \item Lead an 8-member research and development team; edit and review articles for its Medium account (2 published)
+  \item Supported sponsorship outreach and the organisation of DeFy, the community's two-day Web3 hackathon
+\end{itemize}
+
+\end{document}
