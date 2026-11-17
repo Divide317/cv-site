@@ -15,7 +15,7 @@ window.STATUS = {
   "github": "Divide317",
   "name": "Cedric Antony Joseph",
   "headline": "I build detection engines at three layers of the stack: kernel, device and ledger.",
-  "about": "Computer science undergraduate at VIT Chennai (graduating June 2028), moving from AI and machine learning into cybersecurity and systems. My projects pair a low-level engine in C or C++ with a Python layer on top, and I only publish numbers that a script produced. I lead research and development at the Business Innovators Community and I'm working towards a security and systems role in London.",
+  "about": "Computer science undergraduate at VIT Chennai (graduating June 2028), specialising in AI and machine learning and extending that work into cybersecurity and systems. I apply machine learning to security problems, such as anomaly detection for rootkits and pattern detection in financial transactions. My projects pair a low-level engine in C or C++ with a Python layer on top, and I only publish numbers that a script produced. I lead research and development at the Business Innovators Community and I'm working towards a security and systems role in London.",
   "links": [
     {
       "label": "Portfolio site",
@@ -138,6 +138,20 @@ window.STATUS = {
       ]
     },
     {
+      "group": "Machine learning and backend",
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn",
+        "OpenCV",
+        "ONNX",
+        "FastAPI",
+        "PostgreSQL",
+        "MongoDB",
+        "AWS"
+      ]
+    },
+    {
       "group": "Systems and security",
       "items": [
         "Linux internals",
@@ -168,20 +182,6 @@ window.STATUS = {
         "clang-tidy",
         "pytest",
         "Docker"
-      ]
-    },
-    {
-      "group": "Machine learning and backend",
-      "items": [
-        "PyTorch",
-        "TensorFlow",
-        "scikit-learn",
-        "OpenCV",
-        "ONNX",
-        "FastAPI",
-        "PostgreSQL",
-        "MongoDB",
-        "AWS"
       ]
     }
   ],
