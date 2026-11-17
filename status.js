@@ -100,13 +100,13 @@ window.STATUS = {
       "stack": "JavaScript, Node.js, Gemini and Claude APIs",
       "field": "Game, applied AI",
       "points": [
-        "Play it at steward-tan.vercel.app.",
         "A town simulation where residents bring you questions, and your answers change what they do and how the colony fares.",
         "Typed replies can be judged by text matching, Gemini or Claude. Each player's API key stays in their browser and is passed through for one request without being stored or logged.",
         "Worlds save in the browser, and the game runs on a free host with no build step."
       ],
       "next": null,
-      "url": "https://steward-tan.vercel.app"
+      "url": "https://steward-tan.vercel.app",
+      "playLabel": "Play Steward"
     },
     {
       "name": "GradPilot",

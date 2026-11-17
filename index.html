@@ -1041,6 +1041,15 @@
     (p.points || []).forEach(function (t) { ul.appendChild(h("li", null, t)); });
     if (p.next) ul.appendChild(h("li", null, "Next: " + p.next));
     body.appendChild(ul);
+    if (p.url) {
+      var play = h("a", "btn btn-solid", p.playLabel || "Open it");
+      play.href = p.url;
+      play.target = "_blank";
+      play.rel = "noopener";
+      play.style.marginTop = "1.25rem";
+      ul.appendChild(h("li")).appendChild(play);
+      ul.lastChild.style.listStyle = "none";
+    }
     var dl = h("dl");
     dl.appendChild(h("dt", null, "Built with"));
     dl.appendChild(h("dd", null, p.stack));
@@ -1053,6 +1062,14 @@
       link.href = "https://github.com/" + p.repo;
       dd.appendChild(link);
       dl.appendChild(dd);
+    }
+    if (p.url) {
+      dl.appendChild(h("dt", null, "Live"));
+      var ldd = h("dd");
+      var live = h("a", null, p.url.replace(/^https?:\/\//, ""));
+      live.href = p.url;
+      ldd.appendChild(live);
+      dl.appendChild(ldd);
     }
     body.appendChild(dl);
     d.appendChild(body);
