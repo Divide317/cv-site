@@ -11,7 +11,7 @@
   done / total (learning): courses finished in a certificate, or null.
 */
 window.STATUS = {
-  "updated": "2026-11-16",
+  "updated": "2026-11-18",
   "github": "Divide317",
   "name": "Cedric Antony Joseph",
   "headline": "I build detection engines at three layers of the stack: kernel, device and ledger.",
@@ -50,7 +50,8 @@ window.STATUS = {
       "name": "CreaseGuard",
       "tagline": "Cricket no-ball detection and rule adjudication",
       "repo": "Divide317/CreaseGuard",
-      "stage": "In progress",
+      "stage": "Finished, being updated",
+      "finished": true,
       "progress": null,
       "stack": "Python, PyTorch, OpenCV, FastAPI, ONNX",
       "field": "Computer vision",
@@ -65,16 +66,16 @@ window.STATUS = {
       "name": "AML Pattern Engine",
       "tagline": "Graph engine for money-laundering patterns",
       "repo": "Divide317/aml-engine",
-      "stage": "Design stage",
-      "progress": 10,
+      "stage": "In progress",
+      "progress": 15,
       "stack": "C++20, pybind11, Python",
       "field": "Financial crime detection",
       "points": [
         "A temporal graph engine to detect laundering patterns such as cycles, fan-in, fan-out and scatter-gather.",
         "Targets IBM's synthetic anti-money-laundering dataset of 5.08 million transactions.",
-        "The design document, C++ API and test fixtures are written. The engine itself is not built yet."
+        "The CMake build, a Catch2 test harness and a CSV parser for the IBM file are in place, with tests checked against an independent NetworkX reference."
       ],
-      "next": "the graph engine, then a benchmark against NetworkX."
+      "next": "the graph builder, then cycle, fan-in and fan-out detectors, and a benchmark against NetworkX."
     },
     {
       "name": "Trustworthy Sensor Node",
