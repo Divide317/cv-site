@@ -93,7 +93,7 @@ window.STATUS = {
     {
       "name": "Steward",
       "tagline": "Browser game: you are the AI a new colony relies on",
-      "repo": null,
+      "repo": "Divide317/Steward",
       "stage": "Playable",
       "finished": true,
       "progress": null,
