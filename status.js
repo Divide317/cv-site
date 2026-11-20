@@ -9,9 +9,11 @@
   progress: a whole number from 0 to 100, or null to hide the gauge.
   repo:     "owner/name" of a PUBLIC repository, or null if there is none yet.
   done / total (learning): courses finished in a certificate, or null.
+  mode / modeHint (skills): the drive mode the skills knob shows for that group
+                  (Road, Sport, Track, Wet, Eco) and a one-line caption under it.
 */
 window.STATUS = {
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "github": "Divide317",
   "name": "Cedric Antony Joseph",
   "headline": "I build detection engines at three layers of the stack: kernel, device and ledger.",
@@ -129,6 +131,8 @@ window.STATUS = {
   "skills": [
     {
       "group": "Languages",
+      "mode": "Road",
+      "modeHint": "Everyday driving: what I write most days",
       "items": [
         "C",
         "C++",
@@ -140,6 +144,8 @@ window.STATUS = {
     },
     {
       "group": "Machine learning and backend",
+      "mode": "Sport",
+      "modeHint": "Where most of my projects run",
       "items": [
         "PyTorch",
         "TensorFlow",
@@ -154,6 +160,8 @@ window.STATUS = {
     },
     {
       "group": "Systems and security",
+      "mode": "Track",
+      "modeHint": "Low-level and close to the limit",
       "items": [
         "Linux internals",
         "Rootkit detection",
@@ -164,6 +172,8 @@ window.STATUS = {
     },
     {
       "group": "Security operations",
+      "mode": "Wet",
+      "modeHint": "Still finding grip: learning now",
       "note": "learning now through the Google certificate",
       "items": [
         "SIEM tools",
@@ -174,6 +184,8 @@ window.STATUS = {
     },
     {
       "group": "Testing and tooling",
+      "mode": "Eco",
+      "modeHint": "Keeps every build lean and checked",
       "items": [
         "Git",
         "GitHub Actions",

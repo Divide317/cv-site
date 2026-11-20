@@ -341,18 +341,88 @@
     gap: clamp(2rem, 6vw, 5rem);
     align-items: start;
   }
-  .rotary { display: flex; align-items: center; gap: 1.25rem; }
+  .rotary { display: flex; align-items: center; gap: 1.5rem; }
+  /* Drive-mode selector: printed mode ring around a turnable knob */
+  .mode-dial { position: relative; flex: none; width: clamp(10.5rem, 16vw, 12.5rem); aspect-ratio: 1; }
+  .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ring text {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+    dominant-baseline: central;
+    fill: var(--alu);
+    cursor: pointer;
+    transition: fill 0.2s;
+  }
+  .ring .led { fill: #0B271E; stroke: rgba(241, 238, 227, 0.35); stroke-width: 1.5; transition: fill 0.2s; }
   .knob {
-    flex: none;
-    width: clamp(7.5rem, 16vw, 11rem);
-    aspect-ratio: 1;
+    position: absolute;
+    inset: 19%;
     padding: 0;
     border: 0;
     background: none;
-    cursor: pointer;
+    cursor: grab;
     border-radius: 50%;
+    touch-action: none;
   }
+  .knob.turning { cursor: grabbing; }
   .knob svg { width: 100%; height: 100%; display: block; transition: transform 0.35s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .knob.turning svg { transition: none; }
+  #pointer { transition: fill 0.2s; }
+  .modes .code {
+    display: inline-block;
+    min-width: 3.6em;
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .mode-tag {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+    margin: 0 0 0.9rem;
+  }
+  .mode-tag b {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    padding: 0.1rem 0.6rem;
+  }
+  .mode-tag span { color: var(--alu); font-size: 1rem; }
+
+  /* Odometer under the rev counter: live commit counts from GitHub */
+  .odo { display: grid; justify-items: inherit; gap: 0.45rem; }
+  .odo-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: #071a14;
+    color: var(--chalk);
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 0.5rem 0.85rem;
+    font-family: var(--display);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .odo-btn:hover { border-color: var(--chalk); }
+  .odo-mode { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.12em; color: var(--yellow); min-width: 3.8em; text-align: left; }
+  .odo-digits { display: flex; gap: 3px; font-size: 1.7rem; font-weight: 600; line-height: 1; }
+  .wheel { height: 1.25em; width: 0.8em; overflow: hidden; background: #0f2e23; border-radius: 3px; text-align: center; font-variant-numeric: tabular-nums; transition: opacity 0.3s; }
+  .wheel.lead { opacity: 0.4; }
+  .strip { display: block; transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .strip span { display: block; height: 1.25em; line-height: 1.25em; }
+  .odo-unit { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu); }
+  .odo-note { margin: 0; font-size: 0.875rem; line-height: 1.45; color: var(--alu); max-width: 34ch; text-align: center; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .modes { display: grid; gap: 0.35rem; }
   .modes button {
     font-family: var(--body);
@@ -384,6 +454,7 @@
   }
   .js .readout section[hidden] { display: none; }
   .js .readout ul { margin-bottom: 0; }
+  .readout li { white-space: nowrap; }
 
   /* Contact */
   .contact p { max-width: 30ch; font-size: clamp(1.15rem, 1rem + 0.8vw, 1.5rem); line-height: 1.45; margin: 0 0 2rem; }
@@ -507,6 +578,8 @@
   @media (max-width: 56rem) {
     .profile-grid { grid-template-columns: 1fr; }
     .cluster { justify-items: start; }
+    .odo-note { text-align: left; }
+    .rotary { flex-direction: column; align-items: flex-start; }
     .dial { width: min(100%, 19rem); }
     .selector { grid-template-columns: 1fr; }
     .p-body { grid-template-columns: 1fr; }
@@ -602,6 +675,15 @@
           <circle cx="160" cy="160" r="17" fill="#0B271E"/>
           <circle cx="160" cy="160" r="5" fill="#8f9b95"/>
         </svg>
+        <div class="odo">
+          <button class="odo-btn" id="odoBtn" type="button" aria-describedby="odoNote">
+            <span class="odo-mode" id="odoMode">ODO</span>
+            <span class="odo-digits" id="odoDigits" aria-hidden="true"></span>
+            <span class="odo-unit">commits</span>
+            <span class="sr" id="odoSay" aria-live="polite"></span>
+          </button>
+          <p class="odo-note" id="odoNote">Reading commit counts from GitHub.</p>
+        </div>
         <button class="pedal" id="pedal" type="button">Hold to rev</button>
       </div>
     </div>
@@ -666,15 +748,19 @@
       <div class="lap-head"><span class="gear-badge" aria-hidden="true">4</span><h2>Skills</h2></div>
       <div class="selector">
         <div class="rotary">
-          <button class="knob" id="knob" type="button" aria-label="Turn to the next skill group">
-            <svg viewBox="0 0 200 200" aria-hidden="true">
-              <circle cx="100" cy="100" r="96" fill="url(#bezel)"/>
-              <g id="grip"></g>
-              <circle cx="100" cy="100" r="72" fill="#0B271E"/>
-              <circle cx="100" cy="100" r="66" fill="#12382B"/>
-              <rect x="118" y="96" width="46" height="8" rx="4" fill="#D63A2B"/>
-            </svg>
-          </button>
+          <div class="mode-dial">
+            <svg class="ring" id="ring" viewBox="0 0 240 240" aria-hidden="true"></svg>
+            <button class="knob" id="knob" type="button" aria-label="Drive mode knob. Click, drag or use the arrow keys to change skill group.">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <circle cx="100" cy="100" r="96" fill="url(#bezel)"/>
+                <g id="grip"></g>
+                <circle cx="100" cy="100" r="72" fill="#0B271E"/>
+                <circle cx="100" cy="100" r="66" fill="#12382B"/>
+                <rect id="pointer" x="96" y="38" width="8" height="40" rx="4" fill="#D63A2B"/>
+                <circle cx="100" cy="100" r="9" fill="#0B271E"/>
+              </svg>
+            </button>
+          </div>
           <div class="modes" role="radiogroup" aria-label="Skill group" id="modes">
             <button type="button" role="radio" aria-checked="true" data-panel="s-lang">Languages</button>
             <button type="button" role="radio" aria-checked="false" tabindex="-1" data-panel="s-sec">Systems and security</button>
@@ -1205,6 +1291,11 @@
   }
   var knob = document.getElementById("knob");
   var knobSvg = knob.querySelector("svg");
+  var pointer = document.getElementById("pointer");
+  var ring = document.getElementById("ring");
+  // each drive mode has its own lamp colour; unknown modes fall back to chalk
+  var modeColour = { road: "#F1EEE3", sport: "#D63A2B", track: "#F4C430", wet: "#6FB7E0", eco: "#7FD18B" };
+  var groups = [];
   // skill groups come from status.js; the HTML above is only the fallback
   if (STATUS.skills && STATUS.skills.length) {
     var modeBox = document.getElementById("modes");
@@ -1212,15 +1303,26 @@
     modeBox.textContent = "";
     readout.textContent = "";
     STATUS.skills.forEach(function (g, n) {
-      var btn = h("button", null, g.group);
+      var mode = g.mode || "Mode " + (n + 1);
+      var colour = modeColour[mode.toLowerCase()] || "#F1EEE3";
+      groups.push({ mode: mode, colour: colour });
+      var btn = h("button");
       btn.type = "button";
       btn.setAttribute("role", "radio");
       btn.setAttribute("aria-checked", n === 0 ? "true" : "false");
       if (n) btn.tabIndex = -1;
       btn.dataset.panel = "skill-" + n;
+      btn.appendChild(h("span", "code", mode));
+      btn.appendChild(document.createTextNode(" " + g.group));
       modeBox.appendChild(btn);
       var sec = h("section");
       sec.id = "skill-" + n;
+      var tag = h("p", "mode-tag");
+      var badge = h("b", null, mode + " mode");
+      badge.style.color = colour;
+      tag.appendChild(badge);
+      if (g.modeHint) tag.appendChild(h("span", null, g.modeHint));
+      sec.appendChild(tag);
       sec.appendChild(h("h3", null, g.group + (g.note ? ", " + g.note : "")));
       var ul = h("ul");
       g.items.forEach(function (item) { ul.appendChild(h("li", null, item)); });
@@ -1229,34 +1331,197 @@
     });
   }
   var modes = Array.prototype.slice.call(document.querySelectorAll("#modes button"));
+  modes.forEach(function (b, n) {
+    if (!groups[n]) groups[n] = { mode: b.textContent.split(" ")[0], colour: "#F1EEE3" };
+  });
   var selected = 0;
 
-  function aim() {
-    var k = knob.getBoundingClientRect(), b = modes[selected].getBoundingClientRect();
-    var dx = b.left - (k.left + k.width / 2), dy = (b.top + b.height / 2) - (k.top + k.height / 2);
-    knobSvg.style.transform = "rotate(" + (Math.atan2(dy, dx) * 180 / Math.PI).toFixed(1) + "deg)";
-  }
+  // Detents: the modes are printed round the top of the knob, 60 degrees apart (at most 240 in all)
+  var span = Math.min(240, (modes.length - 1) * 60);
+  var detents = modes.map(function (b, n) {
+    return modes.length > 1 ? -span / 2 + n * span / (modes.length - 1) : 0;
+  });
+  var labels = [], leds = [];
+  detents.forEach(function (deg, n) {
+    var rad = deg * Math.PI / 180;
+    var led = el("circle", { "class": "led", cx: 120 + 91 * Math.sin(rad), cy: 120 - 91 * Math.cos(rad), r: 3.5 });
+    var t = el("text", { x: (120 + 108 * Math.sin(rad)).toFixed(1), y: (120 - 108 * Math.cos(rad)).toFixed(1) });
+    t.textContent = groups[n].mode.toUpperCase();
+    t.addEventListener("click", function () { select(n); });
+    ring.appendChild(led);
+    ring.appendChild(t);
+    labels.push(t);
+    leds.push(led);
+  });
+
+  function turnTo(deg) { knobSvg.style.transform = "rotate(" + deg.toFixed(1) + "deg)"; }
   function select(i, focus) {
     selected = (i + modes.length) % modes.length;
+    var colour = groups[selected].colour;
     modes.forEach(function (b, n) {
       var on = n === selected;
       b.setAttribute("aria-checked", on ? "true" : "false");
       b.tabIndex = on ? 0 : -1;
       document.getElementById(b.dataset.panel).hidden = !on;
+      labels[n].style.fill = on ? colour : "";
+      leds[n].style.fill = on ? colour : "";
     });
+    pointer.setAttribute("fill", colour);
     if (focus) modes[selected].focus();
-    aim();
+    turnTo(detents[selected]);
+  }
+  function arrows(e) {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); select(selected + 1, e.currentTarget !== knob); }
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); select(selected - 1, e.currentTarget !== knob); }
   }
   modes.forEach(function (b, n) {
     b.addEventListener("click", function () { select(n); });
-    b.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); select(selected + 1, true); }
-      if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); select(selected - 1, true); }
-    });
+    b.addEventListener("keydown", arrows);
   });
-  knob.addEventListener("click", function () { select(selected + 1); });
-  window.addEventListener("resize", aim);
+  knob.addEventListener("keydown", arrows);
+
+  // Turning the knob: drag it round and it snaps to the nearest mode; a plain click steps to the next one
+  var drag = null;
+  function angleAt(e) {
+    var r = knob.getBoundingClientRect();
+    return Math.atan2(e.clientX - (r.left + r.width / 2), (r.top + r.height / 2) - e.clientY) * 180 / Math.PI;
+  }
+  function nearest(deg) {
+    var best = 0;
+    detents.forEach(function (d, n) { if (Math.abs(d - deg) < Math.abs(detents[best] - deg)) best = n; });
+    return best;
+  }
+  knob.addEventListener("pointerdown", function (e) {
+    drag = { start: angleAt(e), from: detents[selected], moved: false };
+    knob.setPointerCapture(e.pointerId);
+  });
+  knob.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var delta = angleAt(e) - drag.start;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+    if (Math.abs(delta) < 4 && !drag.moved) return;
+    drag.moved = true;
+    knob.classList.add("turning");
+    // the knob stops at the first and last modes, like a real selector
+    var deg = Math.max(detents[0], Math.min(detents[detents.length - 1], drag.from + delta));
+    turnTo(deg);
+    var n = nearest(deg);
+    if (n !== selected) {
+      select(n);
+      turnTo(deg);
+    }
+  });
+  function release() {
+    if (!drag) return;
+    var moved = drag.moved;
+    drag = null;
+    knob.classList.remove("turning");
+    if (moved) {
+      select(selected);
+      dragged = true; // the click that follows a drag must not also step the knob
+    }
+  }
+  var dragged = false;
+  knob.addEventListener("pointerup", release);
+  knob.addEventListener("pointercancel", release);
+  knob.addEventListener("click", function () {
+    if (dragged) { dragged = false; return; }
+    select(selected + 1);
+  });
   select(0);
+
+  /* ---------- Odometer: live commit counts from GitHub ----------
+     ODO counts every commit on the default branch of each project repository on this page.
+     TRIP A and TRIP B count the commits in the last 7 and 30 days. Press the button to cycle. */
+  var odoBtn = document.getElementById("odoBtn");
+  var odoMode = document.getElementById("odoMode");
+  var odoDigits = document.getElementById("odoDigits");
+  var odoNote = document.getElementById("odoNote");
+  var odoSay = document.getElementById("odoSay");
+  var WHEELS = 6, DASH = 10;
+  var strips = [], wheels = [];
+  for (var w = 0; w < WHEELS; w++) {
+    var wheel = h("span", "wheel"), strip = h("span", "strip");
+    for (var d = 0; d <= 9; d++) strip.appendChild(h("span", null, String(d)));
+    strip.appendChild(h("span", null, "-"));
+    wheel.appendChild(strip);
+    odoDigits.appendChild(wheel);
+    strips.push(strip);
+    wheels.push(wheel);
+  }
+  function roll(value) {
+    var s = value == null ? null : String(Math.min(value, Math.pow(10, WHEELS) - 1));
+    if (s) while (s.length < WHEELS) s = "0" + s;
+    var lead = true;
+    strips.forEach(function (strip, n) {
+      var digit = s ? +s[n] : DASH;
+      if (s && (digit !== 0 || n === WHEELS - 1)) lead = false;
+      wheels[n].classList.toggle("lead", !!s && lead);
+      strip.style.transitionDelay = reduced ? "0s" : ((WHEELS - 1 - n) * 0.07) + "s";
+      strip.style.transform = "translateY(" + (-1.25 * digit) + "em)";
+    });
+  }
+  roll(null);
+
+  var repos = STATUS.projects.filter(function (p) { return p.repo; }).map(function (p) { return p.repo; });
+  var day = 864e5;
+  function sinceDays(n) { return new Date(Date.now() - n * day).toISOString().slice(0, 10) + "T00:00:00Z"; }
+  var odoModes = [
+    { label: "ODO", since: null, say: "every commit on the default branch of the " + repos.length + " project repositories below" },
+    { label: "TRIP A", since: 7, say: "commits to those repositories in the last 7 days" },
+    { label: "TRIP B", since: 30, say: "commits to those repositories in the last 30 days" }
+  ];
+  var odoAt = 0;
+
+  // Count commits with one request per repository: ask for one per page, read the last page number
+  function countCommits(repo, since) {
+    var path = "/repos/" + repo + "/commits?per_page=1" + (since ? "&since=" + sinceDays(since) : "");
+    var key = "odo:" + path;
+    try {
+      var hit = JSON.parse(localStorage.getItem(key) || "null");
+      if (hit && Date.now() - hit.t < 36e5) return Promise.resolve(hit.n);
+    } catch (e) {}
+    return fetch("https://api.github.com" + path, { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (r) {
+        if (r.status === 409) return 0; // an empty repository has no commits
+        if (!r.ok) throw new Error("GitHub " + r.status);
+        var m = /[?&]page=(\d+)>;\s*rel="last"/.exec(r.headers.get("Link") || "");
+        return m ? +m[1] : r.json().then(function (a) { return a.length; });
+      })
+      .then(function (n) {
+        try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), n: n })); } catch (e) {}
+        return n;
+      });
+  }
+  function readOdo() {
+    var mode = odoModes[odoAt];
+    odoMode.textContent = mode.label;
+    roll(null);
+    if (!window.fetch || !repos.length) {
+      odoNote.textContent = "Commit counts load from GitHub when the page is online.";
+      return;
+    }
+    var asked = odoAt;
+    Promise.all(repos.map(function (r) { return countCommits(r, mode.since); }))
+      .then(function (counts) {
+        if (asked !== odoAt) return;
+        var total = counts.reduce(function (a, b) { return a + b; }, 0);
+        roll(total);
+        odoNote.textContent = mode.label + ": " + mode.say + ". Live from GitHub; press to switch.";
+        odoSay.textContent = mode.label + ", " + total + " commits.";
+      })
+      .catch(function () {
+        if (asked !== odoAt) return;
+        odoNote.textContent = "GitHub could not be reached just now, so there is no count to show.";
+        odoSay.textContent = "";
+      });
+  }
+  odoBtn.addEventListener("click", function () {
+    odoAt = (odoAt + 1) % odoModes.length;
+    readOdo();
+  });
+  readOdo();
 })();
 </script>
 </body>
