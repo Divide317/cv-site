@@ -912,16 +912,34 @@
       if (e.repeat) return;
     }
     held = true;
+    byKey = !!e && e.type === "keydown";
     pedal.classList.add("down");
     run();
   }
-  function release() { held = false; pedal.classList.remove("down"); }
-  pedal.addEventListener("pointerdown", function (e) { pedal.setPointerCapture(e.pointerId); press(); });
-  pedal.addEventListener("pointerup", release);
-  pedal.addEventListener("pointercancel", release);
+  var byKey = false;
+  function release() {
+    if (!held) return;
+    held = false;
+    pedal.classList.remove("down");
+  }
+  pedal.addEventListener("pointerdown", function (e) {
+    try { pedal.setPointerCapture(e.pointerId); } catch (err) {}
+    press();
+  });
   pedal.addEventListener("keydown", press);
   pedal.addEventListener("keyup", release);
   pedal.addEventListener("blur", release);
+  // Let go of the throttle however the press ends: released off the button, a touch that
+  // turns into a scroll, capture lost, or the window losing focus. Without this the
+  // needle could stay pinned on the rev limiter.
+  pedal.addEventListener("lostpointercapture", release);
+  ["pointerup", "pointercancel", "mouseup", "touchend", "touchcancel", "blur"].forEach(function (type) {
+    window.addEventListener(type, release);
+  });
+  document.addEventListener("visibilitychange", function () { if (document.hidden) release(); });
+  window.addEventListener("pointermove", function (e) {
+    if (held && !byKey && e.pointerType === "mouse" && e.buttons === 0) release();
+  });
   pedal.addEventListener("contextmenu", function (e) { e.preventDefault(); });
 
   // ignition check: one sweep to the top of the scale, then settle at idle
@@ -1412,7 +1430,7 @@
       turnTo(deg);
     }
   });
-  function release() {
+  function endTurn() {
     if (!drag) return;
     var moved = drag.moved;
     drag = null;
@@ -1423,8 +1441,8 @@
     }
   }
   var dragged = false;
-  knob.addEventListener("pointerup", release);
-  knob.addEventListener("pointercancel", release);
+  knob.addEventListener("pointerup", endTurn);
+  knob.addEventListener("pointercancel", endTurn);
   knob.addEventListener("click", function () {
     if (dragged) { dragged = false; return; }
     select(selected + 1);
