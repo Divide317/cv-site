@@ -348,9 +348,8 @@
   .ring text {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 0.08em;
-    text-anchor: middle;
     dominant-baseline: central;
     fill: var(--alu);
     cursor: pointer;
@@ -359,7 +358,7 @@
   .ring .led { fill: #0B271E; stroke: rgba(241, 238, 227, 0.35); stroke-width: 1.5; transition: fill 0.2s; }
   .knob {
     position: absolute;
-    inset: 19%;
+    inset: 22%;
     padding: 0;
     border: 0;
     background: none;
@@ -1362,8 +1361,16 @@
   var labels = [], leds = [];
   detents.forEach(function (deg, n) {
     var rad = deg * Math.PI / 180;
-    var led = el("circle", { "class": "led", cx: 120 + 91 * Math.sin(rad), cy: 120 - 91 * Math.cos(rad), r: 3.5 });
-    var t = el("text", { x: (120 + 108 * Math.sin(rad)).toFixed(1), y: (120 - 108 * Math.cos(rad)).toFixed(1) });
+    // the light sits on the ring at the detent; its label sits beside it on the same line,
+    // reading away from the knob (left of it, right of it, or above it at the top)
+    var lx = 120 + 84 * Math.sin(rad), ly = 120 - 84 * Math.cos(rad);
+    var side = Math.abs(deg) < 20 ? 0 : (deg < 0 ? -1 : 1);
+    var led = el("circle", { "class": "led", cx: lx.toFixed(1), cy: ly.toFixed(1), r: 3.5 });
+    var t = el("text", {
+      x: (side ? lx + side * 9 : lx).toFixed(1),
+      y: (side ? ly : ly - 14).toFixed(1),
+      "text-anchor": side < 0 ? "end" : side > 0 ? "start" : "middle"
+    });
     t.textContent = groups[n].mode.toUpperCase();
     t.addEventListener("click", function () { select(n); });
     ring.appendChild(led);
